@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Reloj React</title>
+    </head>
+
+    <body>
+        <div id="raiz"/>
+
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+        <script>
+            const root = ReactDOM.createRoot(document.getElementById('raiz'));
+            const date = new Date().toDateString();
+
+            setInterval(() => {
+                const time  = new Date().toLocaleTimeString();
+                const clock = React.createElement('h1', null, time);
+                root.render([clock, date ])
+            }, 1000);
+
+        </script>
+    </body>
+</html>

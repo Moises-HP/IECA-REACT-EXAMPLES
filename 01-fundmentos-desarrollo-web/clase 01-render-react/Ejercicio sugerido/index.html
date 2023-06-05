@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Ejercicio sugerido</title>
+</head>
+
+<body>
+  <div id="raiz" />
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<script>
+  const root = ReactDOM.createRoot(document.getElementById('raiz'));
+
+  const recetasCocina = React.createElement('h1', null, 'Recetas de Cocina');
+  const arrayRecetas = JSON.parse(localStorage.getItem('recetas')) || [];
+
+  const renderLista = (array) => {
+    const listaItems = array.map((receta, index) => (
+      React.createElement('li', { key: index },
+        React.createElement('h3', null, receta.nombre),
+        React.createElement('p', null, 'Ingredientes: ' + receta.ingredientes),
+        React.createElement('p', null, 'Tiempo de preparación: ' + receta.tiempo),
+        React.createElement('img', { src: receta.imagen, alt: receta.nombre })
+      )
+    ));
+    
+    const lista = React.createElement('ul', null, listaItems);
+    root.render([recetasCocina, form, lista]);
+  };
+
+  const submit = (event) => {
+    event.preventDefault();
+    const nuevaReceta = {
+      nombre: event.target.nombre_receta.value,
+      ingredientes: event.target.lista_ingredientes.value,
+      tiempo: event.target.tiempo_preparacion.value,
+      imagen: event.target.imagen.value
+    };
+
+    arrayRecetas.push(nuevaReceta);
+    renderLista(arrayRecetas);
+    localStorage.setItem('recetas', JSON.stringify(arrayRecetas));
+
+    event.target.reset();
+  };
+
+  const form = React.createElement('form', { onSubmit: submit }, [
+    React.createElement('input', { type: 'text', placeholder: 'Nombre de la receta', name: 'nombre_receta' }),
+    React.createElement('input', { type: 'textArea', placeholder: 'Ingredientes', name: 'lista_ingredientes' }),
+    React.createElement('input', { type: 'text', placeholder: 'Tiempo de preparación', name: 'tiempo_preparacion' }),
+    React.createElement('input', { type: 'text', placeholder: 'URL de la imagen', name: 'imagen' }),
+    React.createElement('button', { type: 'submit' }, 'Agregar')
+  ]);
+
+  renderLista(arrayRecetas);
+</script>
+</body>
+
+</html>
