@@ -22,10 +22,18 @@ export const RecetasList = () => {
     setRecetaCount(recetas.length);
   }, [recetas]);
 
+  useEffect(() => {
+    const recetasLocal = localStorage.getItem('Recetas');
+    console.log(recetasLocal)
+    /* if (recetasLocal) {
+      setRecetas([ ...recetas, recetasLocal]);
+    } */
+  }, [])
+
   return (
     <>
       <h1>Recetas de Cocina: {recetaCount}</h1>
-      <RecetasForm onSubmit={addReceta} />
+      <RecetasForm onSubmit={addReceta} recetas={recetas} />
       <ul className="flex gap-4 py-4">
         {recetas.map((receta) => (
           <li>

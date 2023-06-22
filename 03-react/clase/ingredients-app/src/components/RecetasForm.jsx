@@ -1,6 +1,6 @@
 
 
-export const RecetasForm = ({ onSubmit }) => {
+export const RecetasForm = ({ onSubmit, recetas }) => {
     const submit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -9,6 +9,7 @@ export const RecetasForm = ({ onSubmit }) => {
         const tiempoPreparacion = form[2].value;
         const imgURL = form[3].value;
         const receta = { name, ingredientes, tiempoPreparacion, imgURL };
+        localStorage.setItem('Recetas', [...recetas, JSON.stringify(receta)])
         onSubmit(receta);
         form.reset();
       };

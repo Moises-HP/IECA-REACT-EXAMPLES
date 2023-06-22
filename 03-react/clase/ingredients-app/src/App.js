@@ -1,10 +1,10 @@
-import { IngredientList } from "./components/IngredientList";
+import { RecetasList } from "./components/RecetasList";
 
 
 export const App = () => {
   return (
      <>
-      <IngredientList />
+      <RecetasList />
      </>
   );
 }

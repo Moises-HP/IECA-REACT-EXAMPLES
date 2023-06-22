@@ -3,9 +3,7 @@
 export const RecetasItem = ({ receta }) => {
     const { name, ingredientes, tiempoPreparacion, imgURL } = receta;
     return (
-      <div
-        className
-      >
+      <div>
         <h2>{name}</h2>
         <p>{ingredientes}</p>
         <p>{tiempoPreparacion} mins</p>
