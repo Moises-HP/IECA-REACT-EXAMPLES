@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { RecetasItem } from "./RecetasItem";
 import { RecetasForm } from "./RecetasForm";
-
+import './components.css'
 
 export const RecetasList = () => {
   const [recetaCount, setRecetaCount] = useState(0);
@@ -16,6 +16,7 @@ export const RecetasList = () => {
 
   const addReceta = (receta) => {
     setRecetas([...recetas, receta]);
+    localStorage.setItem('Recetas', JSON.stringify([...recetas, receta]))
   };
 
   useEffect(() => {
@@ -23,11 +24,10 @@ export const RecetasList = () => {
   }, [recetas]);
 
   useEffect(() => {
-    const recetasLocal = localStorage.getItem('Recetas');
-    console.log(recetasLocal)
-    /* if (recetasLocal) {
-      setRecetas([ ...recetas, recetasLocal]);
-    } */
+    const recetasLocal = JSON.parse(localStorage.getItem('Recetas'));
+    if (recetasLocal) {
+      setRecetas(recetasLocal);
+    }
   }, [])
 
   return (
@@ -36,7 +36,7 @@ export const RecetasList = () => {
       <RecetasForm onSubmit={addReceta} recetas={recetas} />
       <ul className="flex gap-4 py-4">
         {recetas.map((receta) => (
-          <li>
+          <li className="li-style">
             <RecetasItem receta={receta} />
           </li>
         ))}
