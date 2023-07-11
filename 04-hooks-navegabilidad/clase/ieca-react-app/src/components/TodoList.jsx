@@ -11,15 +11,18 @@ const TodoList = () => {
   };
 
   return (
-    <div className="bg-gray-200 flex-1 w-full flex flex-col gap-4">
+    <div className="bg-gray-200 flex-1 w-full flex flex-col gap-4 p-4">
       <div className="flex gap-4">
         <input
           type="text"
+          placeholder="Nueva tarea"
           onChange={({ target }) => {
             setInputValue(target.value);
           }}
         />
-        <button onClick={newTodo}>Guardar</button>
+        <button className="bg-green-300 p-2 font-bold" onClick={newTodo}>
+          Añadir
+        </button>
       </div>
       <ul>
         {list.map((todo, index) => (

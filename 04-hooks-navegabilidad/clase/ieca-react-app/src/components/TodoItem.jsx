@@ -7,7 +7,9 @@ const TodoItem = ({ todo, removeTodo, updateTodo, index }) => {
         onChange={({ target }) => updateTodo(index, target.value)}
       />
       <span>{todo.text}</span>
-      <button onClick={() => removeTodo(index)}>Eliminar</button>
+      <button className="text-red-500" onClick={() => removeTodo(index)}>
+        Eliminar
+      </button>
     </li>
   );
 };
