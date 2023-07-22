@@ -1,7 +1,8 @@
-import { useCartContext } from "../provider/CartProvider";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
 
 const ProductItem = ({ product }) => {
-  const { dispatch } = useCartContext();
+  const dispatch = useDispatch();
 
   return (
     <div className="flex flex-col border border-gray-300 shadow-sm rounded-xl p-4">
@@ -15,7 +16,8 @@ const ProductItem = ({ product }) => {
       <button
         className="bg-black hover:bg-gray-800 text-white rounded-md p-2 mt-2"
         onClick={() => {
-          dispatch({ type: "ADD_TO_CART", payload: product });
+          dispatch(addToCart(product));
+          // dispatch({ type: "ADD_TO_CART", payload: product });
           alert("Producto añadido al carrito");
         }}
       >
