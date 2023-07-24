@@ -1,10 +1,27 @@
 import { useCartContext } from "../provider/CartProvider";
+import useAuth from "../hooks/useAuth";
+import { deleteDoc, doc } from "firebase/firestore";
+import { firestore } from "../index";
 
 const ProductItem = ({ product }) => {
   const { dispatch } = useCartContext();
+  const { user } = useAuth();
+
+  const removeProduct = async () => {
+    console.log(product);
+    await deleteDoc(doc(firestore, "products", product.id));
+  };
 
   return (
-    <div className="flex flex-col border border-gray-300 shadow-sm rounded-xl p-4">
+    <div className="flex flex-col border border-gray-300 shadow-sm rounded-xl p-4 relative">
+      {user && (
+        <button
+          className="bg-red-500 h-8 w-8 absolute -top-4 -right-4 rounded-full text-white"
+          onClick={removeProduct}
+        >
+          X
+        </button>
+      )}
       <img
         src={product.image}
         alt={product.title}

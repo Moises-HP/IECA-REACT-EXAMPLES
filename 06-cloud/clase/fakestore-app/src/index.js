@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -14,19 +15,20 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAoUdmR2k_Q05WGXTHdm2yzJT4mesGvkT0",
-  authDomain: "fakestore-app-e03f8.firebaseapp.com",
-  projectId: "fakestore-app-e03f8",
-  storageBucket: "fakestore-app-e03f8.appspot.com",
-  messagingSenderId: "146714452827",
-  appId: "1:146714452827:web:70cd0551eebc73a973b07e",
-  measurementId: "G-G6QFD99M1E",
+  apiKey: "AIzaSyDQInFLIRRF7pLKKfpDhxJvoRCK5UV89iI",
+  authDomain: "fakestore-app-a7694.firebaseapp.com",
+  projectId: "fakestore-app-a7694",
+  storageBucket: "fakestore-app-a7694.appspot.com",
+  messagingSenderId: "107631971957",
+  appId: "1:107631971957:web:c38fb977363750bd7bb23c",
+  measurementId: "G-LWLJ19RMER"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const auth = getAuth(app);
+export const firestore = getFirestore(app);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

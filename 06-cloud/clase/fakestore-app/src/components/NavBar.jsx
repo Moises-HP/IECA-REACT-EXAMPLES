@@ -1,22 +1,9 @@
-import { onAuthStateChanged, signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { auth } from "..";
-import { useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const NavBar = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-    });
-
-    return () => unsubscribe();
-  }, []);
+  const { user, signOutApp } = useAuth();
 
   return (
     <nav className="h-20 w-full bg-black p-4 flex justify-between text-white items-center">
@@ -32,7 +19,7 @@ const NavBar = () => {
       ) : (
         <button
           onClick={() => {
-            signOut(auth);
+            signOutApp();
             alert("Sesión cerrada");
           }}
           className="underline"

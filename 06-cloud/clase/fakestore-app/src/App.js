@@ -6,6 +6,7 @@ import { CartProvider } from "./provider/CartProvider";
 import Login from "./pages/Login";
 import Auth from "./hoc/Auth";
 import Protected from "./pages/auth/Protected";
+import NewProduct from "./pages/auth/NewProduct";
 
 function App() {
   return (
@@ -24,6 +25,15 @@ function App() {
               element={
                 <Auth>
                   <Protected />
+                </Auth>
+              }
+            />
+            <Route
+              path="/nuevo-producto"
+              exact
+              element={
+                <Auth>
+                  <NewProduct />
                 </Auth>
               }
             />
